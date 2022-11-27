@@ -1,0 +1,21 @@
+{
+  "name": "balanzierer",
+  "version": "0.0.1",
+  "description": "Balanzierer, corelightning balancing plugin frontend",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build; cp CNAME service-worker.js favicon.ico dist/",
+    "deploy": "git push origin `git subtree split --prefix dist main`:gh-pages --force",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^3.0.9",
+    "vite-plugin-solid": "^2.3.0"
+  },
+  "dependencies": {
+    "loglevel": "^1.8.0",
+    "solid-js": "^1.5.1"
+  }
+}

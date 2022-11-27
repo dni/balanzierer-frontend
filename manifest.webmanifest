@@ -1,0 +1,17 @@
+{
+  "short_name": "balanzierer",
+  "name": "balanzierer",
+  "icons": [
+    {
+      "src": "https://www.b1tco1n.org/img/btc.png",
+      "type": "image/png",
+      "sizes": "900x900"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f7931a",
+  "description": "Balanzierer, corelightning balancing plugin frontend",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#f7931a"
+}
