@@ -145,6 +145,7 @@ const WebSocketAction = {
     balance: "balance",
     channels: "channels",
     peers: "peers",
+    getinfo: "getinfo",
 };
 
 export class WebSocketService {
@@ -163,7 +164,7 @@ export class WebSocketService {
     onclose(event) {
     }
     onopen(event) {
-        this.send(JSON.stringify({"type": WebSocketAction.user}));
+        this.send(JSON.stringify({"action": WebSocketAction.getinfo}));
     }
     onmessage(event) {
         let data = JSON.parse(event.data);
