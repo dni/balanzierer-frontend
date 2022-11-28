@@ -9,8 +9,9 @@ import { fetcher, WebSocketService } from './helpers';
 import { version } from './config';
 
 import Controls from './Controls';
-import Channels from './Channels';
+// import Channels from './Channels';
 import Peers from './Peers';
+import Info from './Info';
 
 export const ws = new WebSocketService();
 export const toggle_rainbow = () => document.body.classList.toggle("rainbow");
@@ -31,8 +32,8 @@ const App = () => {
           <img src={logo} class={styles.logo} alt="logo" />
           <Controls />
         </div>
+        <Info />
         <Peers />
-        <Channels />
       </section>
       <footer>
           <button onclick={toggle_rainbow}>rainbow</button>

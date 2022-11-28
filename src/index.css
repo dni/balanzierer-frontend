@@ -13,14 +13,14 @@ body {
 }
 #top {
     text-decoration: none;
-    font-size: 29px;
+    font-size: 21px;
     position: fixed;
     right: 32px;
     bottom: 22px;
     background: #00000040;
     border-radius: 100%;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     padding: 5px 0 5px 11px;
 }
 body.rainbow {
@@ -144,7 +144,6 @@ footer button {
     padding: 6px;
     background: black;
     color: #333;
-    margin-bottom: 24px;
 }
 .channel-bar-percent {
     display: block;
@@ -186,4 +185,29 @@ footer button {
 
 button + button {
     margin-left: 12px;
+}
+
+#info .labels {
+    columns: 3;
+}
+#info .labels p {
+    margin: 0;
+}
+.peer p,
+.channel p {
+    margin: 0;
+}
+.channel:hover {
+    background: rgba(255,255,255,.2);
+}
+.peer-info {
+    padding: 12px;
+    margin: 12px 0;
+    color: #333;
+    border-radius: 7px;
+}
+.channel {
+    margin: 12px 0;
+    padding: 12px;
+    cursor: pointer;
 }

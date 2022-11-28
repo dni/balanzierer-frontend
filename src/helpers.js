@@ -5,6 +5,7 @@ import {
     channels,
     setBalance,
     balance,
+    setInfo,
 } from "./signals"
 
 import log from 'loglevel';
@@ -42,35 +43,6 @@ export const fetcher = (url, cb, json = true, params = null) => {
           opts.body = data
       }
   }
-  // fetch(api_url+url, opts)
-  //   .then(async response => {
-  //     if (response.status === 401) {
-  //       throw new Error(`unauthorized`);
-  //     }
-  //     if (!response.ok) {
-  //       let json = {};
-  //       try {
-  //         json = await response.json();
-  //       } catch {
-  //         throw new Error(`could not parse response json`);
-  //       }
-  //       let details = "";
-  //       if (Array.isArray(json.detail)) {
-  //         let validation_errors = json.detail.map(e => e.loc[1] + ": " + e.msg);
-  //         details = validation_errors.join("\n");
-  //       } else {
-  //         details = json.detail;
-  //       }
-  //       throw new Error(`${details}`);
-  //     }
-  //     const json = await response.json();
-  //     return json;
-  //   })
-  //   .then(cb)
-  //   .catch((error) => {
-  //       log.error(error);
-  //       setErrorMessage(error.toString());
-  //   });
 };
 
 export const notify = (title, body, icon) => {
@@ -142,10 +114,13 @@ const WebSocketAction = {
     error: "error",
     ping: "ping",
     pong: "pong",
-    balance: "balance",
-    channels: "channels",
-    peers: "peers",
+    getnode: "genot",
+    listpeers: "listpeers",
     getinfo: "getinfo",
+    rebalancebyscid: "rebalancebyscid",
+    rebalanceupdate: "rebalanceupdate",
+    rebalanceend: "rebalanceend",
+    rebalancefailed: "rebalancefailed",
 };
 
 export class WebSocketService {
@@ -156,37 +131,38 @@ export class WebSocketService {
         this.ws.onmessage = this.onmessage;
         this.ws.onclose = this.onclose;
     }
-    send(params) {
-        this.ws.send(JSON.stringify(params));
-    }
     onerror(event) {
     }
     onclose(event) {
     }
     onopen(event) {
         this.send(JSON.stringify({"action": WebSocketAction.getinfo}));
+        this.send(JSON.stringify({"action": WebSocketAction.listpeers}));
     }
     onmessage(event) {
         let data = JSON.parse(event.data);
         log.debug(data);
-        if (data.type == WebSocketAction.channels) {
-            setChannels(data.data);
+        // if (data.action == WebSocketAction.channels) {
+        //     setChannels(data.data);
+        // }
+        if (data.action == WebSocketAction.getinfo) {
+            setInfo(data.data);
         }
-        if (data.type == WebSocketAction.peers) {
+        if (data.action == WebSocketAction.listpeers) {
             setPeers(data.data);
         }
-        if (data.type == WebSocketAction.balance) {
-            let amount = data.data.balance / 1000;
-            setBalance(amount);
-        }
-        if (data.type == WebSocketAction.error) {
+        // if (data.action == WebSocketAction.balance) {
+        //     let amount = data.data.balance / 1000;
+        //     setBalance(amount);
+        // }
+        if (data.action == WebSocketAction.error) {
             setErrorMessage(data.message);
-            log.error(data.type, data.message);
+            log.error(data.action, data.message);
         }
-        if (data && data.type == WebSocketAction.ping) {
-           this.send({"type": WebSocketAction.pong});
+        if (data && data.action == WebSocketAction.ping) {
+           this.send({"action": WebSocketAction.pong});
         }
-        if (data && data.type == WebSocketAction.pong) {
+        if (data && data.action == WebSocketAction.pong) {
            log.debug("received pong!!!");
         }
     }

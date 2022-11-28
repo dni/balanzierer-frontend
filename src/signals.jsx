@@ -10,3 +10,4 @@ export const [services, setServices] = createSignal([]);
 
 export const [channels, setChannels] = createSignal(false);
 export const [peers, setPeers] = createSignal(false);
+export const [info, setInfo] = createSignal({});
