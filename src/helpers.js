@@ -114,13 +114,13 @@ const WebSocketAction = {
     error: "error",
     ping: "ping",
     pong: "pong",
-    getnode: "genot",
     listpeers: "listpeers",
     getinfo: "getinfo",
     rebalancebyscid: "rebalancebyscid",
     rebalanceupdate: "rebalanceupdate",
     rebalanceend: "rebalanceend",
     rebalancefailed: "rebalancefailed",
+    rebalancestop: "rebalancestop",
 };
 
 export class WebSocketService {

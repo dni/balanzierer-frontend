@@ -193,12 +193,29 @@ button + button {
 #info .labels p {
     margin: 0;
 }
+@media (min-width: 768px) {
+    #peers ul {
+        display: flex;
+    }
+    .peer {
+        width: 50%;
+        padding: 11px;
+    }
+}
 .peer p,
 .channel p {
     margin: 0;
 }
+
+.channel[data-active="1"],
 .channel:hover {
     background: rgba(255,255,255,.2);
+}
+.channel[data-type="in"] {
+    background: rgba(0,255,0,.2);
+}
+.channel[data-type="out"] {
+    background: rgba(255,0,0,.2);
 }
 .peer-info {
     padding: 12px;
