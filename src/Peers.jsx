@@ -8,7 +8,7 @@ import {
 } from './Controls';
 
 const channel_width = (channel) => "width: " + (channel.msatoshi_to_us / channel.msatoshi_total * 100) + "%;";
-const peercolor = (color) => "background: #" + color + ";";
+const peercolor = (color) => "color: #" + color + ";";
 
 const channel_click = (e) => {
     let inc = inscid()
@@ -45,10 +45,7 @@ function Peers() {
       <For each={peers()} fallback={<div>no peers</div>}>
           {(peer, index) => (
           <li className="peer">
-             <div className="peer-info" style={peercolor(peer.color)}>
-             <p className="peer-alias"><b>Peer Alias: </b>{peer.alias}</p>
-             <p className="peer-color"><b>Peer Color: </b>{peer.color}</p>
-             </div>
+             <h3 className="peer-alias" style={peercolor(peer.color)}>{peer.alias}</h3>
              <For each={peer.channels} fallback={<div>no channels</div>}>
              {(channel, index) => (
                  <div className="channel" onclick={channel_click} data-type="" data-active="0" data-id={channel.short_channel_id}>
