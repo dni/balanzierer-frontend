@@ -31,8 +31,8 @@ const App = () => {
         <div className="flex">
           <img src={logo} class={styles.logo} alt="logo" />
           <Controls />
+          <Info />
         </div>
-        <Info />
         <Peers />
       </section>
       <footer>

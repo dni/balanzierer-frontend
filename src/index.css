@@ -178,20 +178,29 @@ footer button {
     border-radius: 8px;
     margin-top: 32px;
 }
-.flex {
-    display: flex;
-    align-items: center;
+#controls {
+    margin: 32px 0;
+}
+@media (min-width: 768px) {
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #controls {
+        padding-right: 32px;
+    }
 }
 
 button + button {
     margin-left: 12px;
 }
 
-#info .labels {
-    columns: 3;
-}
 #info .labels p {
     margin: 0;
+}
+#info p {
+    word-break: break-all;
 }
 @media (min-width: 768px) {
     #peers ul {
@@ -200,6 +209,9 @@ button + button {
     .peer {
         width: 50%;
         padding: 11px;
+    }
+    #info .labels {
+        columns: 2;
     }
 }
 .peer p,
